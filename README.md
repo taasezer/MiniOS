@@ -1,2 +1,0 @@
-# MiniOS
-just os
