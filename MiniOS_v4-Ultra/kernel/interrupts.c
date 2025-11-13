@@ -1,9 +1,9 @@
 #include <stdint.h>
-#include <stddef.h>
 extern void scheduler_tick(void);
+extern void console_write_str(const char*);
 extern void pic_eoi(void);
-extern void kb_buffer_push(unsigned char c);
 extern unsigned char kb_map[256];
+extern void kb_buffer_push(unsigned char c);
 void isr_c_handler(int vector, uint64_t* regs){
     if(vector==0x20){
         scheduler_tick();

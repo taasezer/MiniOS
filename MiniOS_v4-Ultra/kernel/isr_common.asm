@@ -1,5 +1,5 @@
 BITS 64
-GLOBAL irq0_stub, irq1_stub, isr_common_stub
+GLOBAL isr_common_stub, irq0_stub, irq1_stub
 EXTERN isr_c_handler
 SECTION .text
 irq0_stub:
@@ -8,6 +8,7 @@ irq0_stub:
 irq1_stub:
     mov edi, 0x21
     jmp isr_common_stub
+
 isr_common_stub:
     push rbp
     mov rbp, rsp
@@ -23,11 +24,8 @@ isr_common_stub:
     push rcx
     push rbx
     push rax
-    ; rdi = vector (set by stub). pass pointer to registers in rsi
     mov rsi, rsp
-    ; call C handler
     call isr_c_handler
-    ; restore registers
     pop rax
     pop rbx
     pop rcx

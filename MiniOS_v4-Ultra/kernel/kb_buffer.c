@@ -1,4 +1,3 @@
-#include <stdint.h>
 unsigned char kb_buf[256];
 unsigned char kb_head = 0;
 unsigned char kb_tail = 0;

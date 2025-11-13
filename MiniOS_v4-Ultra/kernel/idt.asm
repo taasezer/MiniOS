@@ -5,7 +5,6 @@ ALIGN 16
 idt_table: resb 256*16
 idt_ptr: resb 10
 SECTION .text
-; rdi = index, rsi = handler addr, rdx = flags (optional)
 idt_set_entry:
     push rbp
     mov rbp, rsp
@@ -13,7 +12,6 @@ idt_set_entry:
     imul rcx, 16
     lea rdi, [rel idt_table]
     add rdi, rcx
-    ; split handler address
     mov rax, rsi
     mov word [rdi + 0], ax
     mov word [rdi + 2], 0x08
